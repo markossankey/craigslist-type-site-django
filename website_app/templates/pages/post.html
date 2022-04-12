@@ -1,0 +1,18 @@
+{% extends 'pages/components/base.html' %}
+
+{% block title %}View/Edit Post{% endblock title %} 
+
+{% block nav %}
+  <a href="{% url 'categories' %}">All Categories</a>&nbsp;&nbsp;>&nbsp;
+  <a href="{% url 'category' category_pk=post.subcategory.category.id%}">{{ post.subcategory.category.name|capfirst }}</a>&nbsp;&nbsp;>&nbsp;
+  <a href="{% url 'subcategory' category_pk=post.subcategory.category.id subcategory_pk=post.subcategory.id %}">{{ post.subcategory.name|capfirst }}</a>&nbsp;&nbsp;>&nbsp;
+  Current post  
+{% endblock nav %}
+
+{% block content %}
+  <h2 class="bg_light text-center">{{post.description}}</h2>
+  <div class="container d-flex justify-content-center"> 
+    <a href="{% url 'post_edit' category_pk=post.subcategory.category.id subcategory_pk=post.subcategory.id post_pk=post.id %}"><button class="btn btn-primary m-3">Edit</button></a>
+    <button class="btn btn-outline-primary m-3" onClick="deletePost(event, {{post.id}}, {{post.subcategory.category.id}}, {{post.subcategory.id}})">Delete</button>
+  </div>
+{% endblock content %}

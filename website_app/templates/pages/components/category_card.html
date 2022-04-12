@@ -1,0 +1,21 @@
+<div class="col m-5" > 
+  <div  class="card text-center p-2"  id="index-category-card">
+    <div class="card-header">
+      <h4><a id="category-{{ category.id }}-name" href={% url 'category' category.id %}>{{ category.name|capfirst }}</a></h4>
+      <a href="{% url 'category_edit' category.id %}"><button class="btn btn-primary">Edit category</button></a>
+      <button class="btn btn-outline-primary" onClick="deleteCategory(event, {{category.id}})">Delete category</button>  
+    </div>
+    <div class="card-body">
+      <p class="card-text text-secondary">{{ category.description }}</p>
+    </div>
+    <ul class="list-group list-group-flush justify-content-center" id="index-category-card-list">
+      {% for subcategory in category.subcategories.all %}
+        <li class="list-group-item d-flex align-items-center justify-content-center" style="height: 5rem;">
+          <a href={% url 'subcategory' category_pk=category.id subcategory_pk=subcategory.id %}>
+            {{ subcategory.name }}
+          </a>
+        </li>
+        {% endfor %}
+    </ul>
+  </div>
+</div>

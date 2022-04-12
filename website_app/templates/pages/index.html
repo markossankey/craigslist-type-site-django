@@ -1,0 +1,21 @@
+{% extends 'pages/components/base.html' %}
+
+{% block title %}Markos List{% endblock title %}
+
+{% block content %}
+  <h1 class="text-center">Welcome to Markos's List</h1>
+  <div class="d-flex justify-content-center p-3">
+      <a href="{% url 'category_new' %}"><button class="btn btn-primary btn-lg">+ New Category</button></a>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="row"></div>
+        {% for category in categories %}
+          {% include 'pages/components/category_card.html' %}
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

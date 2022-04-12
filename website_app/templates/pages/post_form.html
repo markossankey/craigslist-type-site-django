@@ -1,0 +1,20 @@
+{% extends 'pages/components/form_page.html' %}
+
+{% block form_title %}{{action|capfirst}} Post{% endblock form_title %}
+
+{% block form_header_for %} 
+  {{action|capfirst}} Post
+{% endblock form_header_for %}
+
+{% block form_content %}
+  {% for field in required_fields %}
+    <div class="mb-3">
+      <label id="{{ field.name }}" for="{{ field.name }}" class="form-label text-secondary">{{ field.name|capfirst }}:</label>
+      {% if field.name != 'post' %}
+        <input name="{{ field.name }}" class="form-control" type="text" value="{{ field.value|capfirst }}" disabled>
+      {% else %}
+        <input name="{{ field.name }}" class="form-control" type="text" value="{{ field.value|capfirst }}">
+      {% endif %}
+    </div>
+  {% endfor %}
+{% endblock form_content %}

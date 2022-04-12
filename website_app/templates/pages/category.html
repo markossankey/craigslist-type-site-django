@@ -1,0 +1,23 @@
+{% extends 'pages/components/base.html' %}
+
+{% block title %}{{ category.name|capfirst }}{% endblock title %}
+
+{% block nav %}
+  <a href="{% url 'categories' %}">All Categories</a>&nbsp;&nbsp;>&nbsp;
+  {{category.name|capfirst}}
+{% endblock nav %}
+
+{% block content %}
+  {% include 'pages/components/category_card.html' %}    
+  <form class="d-flex justify-content-center mb-5" method="POST">
+    {% csrf_token %}
+    <div class="input-group" style="width: 25rem;">
+      <input type="text" class="form-control" placeholder="Add subcategory" name="new_subcategory">
+      <input type="submit" class="btn btn-primary" value="+">
+    </div>
+  </form>
+  <h3 class="text-center"> All posts in {{ category.name|capfirst }}</h3>
+  {% for subcategory in category.subcategories.all %}
+    {% include 'pages/components/post_list.html' %}
+  {% endfor %}
+{% endblock content %}

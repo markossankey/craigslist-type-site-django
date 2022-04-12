@@ -1,0 +1,16 @@
+{% extends 'pages/components/form_page.html' %}
+
+{% block form_title %}{{ action|capfirst }} Category{% endblock form_title %}
+
+{% block form_header_for %}
+  {{ action|capfirst }} Category
+{% endblock form_header_for %}
+
+{% block form_content %}
+  {% for field in required_fields %}
+  <div class="mb-3">
+    <label id="{{ field.fieldname }}" for="{{ field.fieldname }}" class="form-label text-secondary">{{ field.fieldname|capfirst }}:</label>
+    <input name="{{ field.fieldname }}" class="form-control" type="text" value="{{field.value|capfirst}}">
+  </div>
+  {% endfor %}
+{% endblock form_content %}

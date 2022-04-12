@@ -1,0 +1,21 @@
+<div class="container d-flex justify-content-center mt-5">
+  <a href="{% url 'post_new' category_pk=subcategory.category.id subcategory_pk=subcategory.id %}"><button class="btn-primary btn">Create post in the {{ subcategory.name|capfirst }} board</button></a>
+</div>
+
+{% if subcategory.posts.all %}
+  {% for post in subcategory.posts.all %}
+    <div class="card mx-5 my-2 text-dark text-center">
+      <div class="card-body">
+        <div class="container d-flex justify-content-between">
+          <p class="my-auto">{{ post.description }}</p>
+          <div>
+            <a href="{% url 'post' category_pk=subcategory.category.id subcategory_pk=subcategory.id post_pk=post.id %}"><button class="btn btn-primary btn-sm">View</button></a>
+            <button class="btn btn-outline-primary btn-sm" onClick="deletePost(event, {{post.id}}, {{post.subcategory.category.id}}, {{post.subcategory.id}})">Delete</button>
+          </div>
+        </div> 
+      </div>
+    </div>
+  {% endfor %}
+{% else %}
+<h3 class="text-center mt-3">No posts in this subcategory</h3>
+{% endif %}

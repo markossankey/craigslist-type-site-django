@@ -1,0 +1,11 @@
+#index-category-card-list {
+  flex-flow: row wrap;
+}
+
+#index-category-card-list>li {
+  width: 10rem;
+}
+
+.list-group-flush>.list-group-item:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, .125);
+}

@@ -1,0 +1,17 @@
+{% extends 'pages/components/base.html' %}
+
+{% block title %}{{ subcategory.name|capfirst }}{% endblock title %}
+
+{% block nav %}
+  <a href="{% url 'categories' %}">All Categories</a>&nbsp;&nbsp;>&nbsp;
+  <a href="{% url 'category' category_pk=subcategory.category.id%}">{{ subcategory.category.name|capfirst }}</a>&nbsp;&nbsp;>&nbsp;
+  {{subcategory.name|capfirst}}
+{% endblock nav %}
+
+{% block content %}
+  <h1 class="text-center">{{ subcategory.name|capfirst }} in {{ subcategory.category.name|capfirst }}</h1>
+  <div class="container d-flex justify-content-center">
+    <button class="btn btn-outline-primary btn-sm" onClick="deleteSubcategory(event, {{subcategory.category.id}}, {{subcategory.id}})">Delete this Subcategory</button>
+  </div>
+  {% include 'pages/components/post_list.html' %}
+{% endblock content %}
